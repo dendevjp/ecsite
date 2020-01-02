@@ -41,7 +41,7 @@ if( md5($magic_code . $result['email1']) == $_GET['md5']) {
 }
 }
 catch(Throwable $e) {
-    error_log("[". date('Y-m-d H:i:s') . "]". $e->getMessage());
+    error_log("[". date('Y-m-d H:i:s') . "]". __LINE__ . $e->getMessage());
 }
 ?>
         <div align="center">会員登録[4/4]<br>

@@ -62,7 +62,7 @@ $md5 = md5($magic_code . $_POST['email1']);
 
 $body = <<< _EOF_
 ${_POST['name_kanji']}様
-この度は、$site_nameへのご登録ありがとうございました。
+この度は、${site_name}へのご登録ありがとうございました。
 メールアドレスを確認するため、下記のURLをクリックしてください。
 $site_url/register4.php?email1=${_POST['email1']}&md5=$md5
         
@@ -75,10 +75,9 @@ _EOF_;
 //mb_internal_encoding("UTF-8");
 //var_dump($body);
 echo mail( $_POST['email1'], $subject, $body);
-var_dump($body);
 }
 catch(Throwable $e) {
-    echo var_dump($e->getMessage());
+    error_log("[". date('Y-m-d H:i:s') . "]". __LINE__ . $e->getMessage());
 }
 
 ?>

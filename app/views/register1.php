@@ -1,6 +1,6 @@
 
 <?php
-require 'xmpf_tbl.php';
+require '../controllers/xmpf_tbl.php';
 ?>
 <html>
     <head>
