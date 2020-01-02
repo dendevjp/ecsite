@@ -57,7 +57,7 @@ require 'xmpf_tbl.php';
                             
                         </td>
                         <td>
-                            <input type="text" name="name_lanji" size="48" maxlength="32">
+                            <input type="text" name="name_kanji" size="48" maxlength="32">
                         </td>
                     </tr>
                     <tr>
