@@ -1,7 +1,7 @@
 <?php
 require '../controllers/config.php';
 require '../controllers/database.php';
-require '../controllers/lib.php';
+require_once '../controllers/lib.php';
 
 ?>
 
@@ -55,6 +55,7 @@ if ( !isset($_GET['sort'])) { $_GET['sort'] = ''; }
                         <option value="" <?php if ( $_GET['category_id'] == '') { echo 'selected';} ?>>指定しない</option>
 <?php make_category ( 0, 'type, category_name', 'desc', $_GET['category_id'], '') ?>
                     </select>
+
                     <input type="text" name='query' value="<?php print($_GET['query']); ?>" size="32">
                     並び替え：
                     <select name='sort'>

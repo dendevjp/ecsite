@@ -27,7 +27,7 @@ $stmt->execute();
 //    echo "name = ".$loop['name'].PHP_EOL;
 //}
 $result = $stmt->fetch();
-if( md5($magic_code . $result['email1']) == $_GET['md5']) {
+if( isset($result['email1']) && md5($magic_code . $result['email1']) == $_GET['md5']) {
     //prepareメソッドでSQLをセット
     $stmt = $pdo->prepare("update users set state = '0' where email1 = :email1");
     //bindValueメソッドでパラメータをセット

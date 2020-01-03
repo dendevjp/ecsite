@@ -16,7 +16,6 @@ if( isset($_POST['passwd']) && $_POST['passwd'] == '') {
 
 if( $_SERVER["REQUEST_METHOD"] == "POST" ) {
     
-    
     $sql = "select * from users where login_id = :login_id and state = :state ";
     $stmt = $pdo -> prepare($sql);
     $stmt->bindParam(':login_id',  $_POST['login_id'], PDO::PARAM_STR);
@@ -25,7 +24,7 @@ if( $_SERVER["REQUEST_METHOD"] == "POST" ) {
     $result = $stmt->fetch();
 
     if( $result['passwd'] == md5($_POST['passwd'])) {
-        var_dump($_POST['login_id']);
+        $_SESSION['users_id'] = $result['users_id'];
         $_SESSION['login_id'] = $_POST['login_id'];
         $_SESSION['auth_code'] = md5( $magic_code . $_POST['login_id']);
         $_SESSION['name_kanji'] = $result['name_kanji'];
@@ -33,8 +32,8 @@ if( $_SERVER["REQUEST_METHOD"] == "POST" ) {
         $sql = "update users set login_date = :login_date where login_id = :login_id
                 and state = :state";
         $stmt = $pdo -> prepare($sql);
-        $stmt->bindParam(':login_date', date('Y-m-d H:i:s'), PDO::PARAM_STR);
-        $stmt->bindParam(':login_id', $_POST['login_id'], PDO::PARAM_STR);
+        $stmt->bindValue(':login_date', date('Y-m-d H:i:s'), PDO::PARAM_STR);
+        $stmt->bindValue(':login_id', $_POST['login_id'], PDO::PARAM_STR);
         $stmt->bindValue(':state', 0, PDO::PARAM_STR);
         $stmt->execute();
 
@@ -42,7 +41,6 @@ if( $_SERVER["REQUEST_METHOD"] == "POST" ) {
             header( 'Location: ' . $_GET['redirect']);
             exit;
         } else {
-            error_log("[". date('Y-m-d H:i:s') . "]". __LINE__ .$site_top_url);
             header( 'Location: ' . $site_top_url);
             exit;
         }

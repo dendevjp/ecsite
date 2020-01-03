@@ -6,8 +6,9 @@ $site_url = "http://ecsite.jp/app/views";
 $site_top_url = "http://ecsite.jp/app/views/index.php";
 $system_message = "";
 $title = "";
+$error = "";
 
-try{
+try{date_default_timezone_set('Asia/Tokyo');
 ini_set('error_log', '/var/www/sites/ecsite/logs/debug.log');
 }
 catch(Throwable $e) {
