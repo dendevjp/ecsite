@@ -11,12 +11,16 @@
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/register2.php</file>
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/controllers/usercheck_edit.php</file>
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/edit_account.php</file>
+            <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/checkout_address.php</file>
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/item.php</file>
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/register1.php</file>
+            <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/checkout_confirm.php</file>
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/edit_passwd.php</file>
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/register3.php</file>
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/cart.php</file>
+            <file>file:/C:/MyFoulder/Learn/php/ecsite/app/controllers/payment_tbl.php</file>
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/account.php</file>
+            <file>file:/C:/MyFoulder/Learn/php/ecsite/app/views/checkout_thanks.php</file>
             <file>file:/C:/MyFoulder/Learn/php/ecsite/app/controllers/lib.php</file>
         </group>
     </open-files>

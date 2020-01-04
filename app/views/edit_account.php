@@ -239,9 +239,6 @@ catch(Throwable $e) {
                      　　<td>
                             <select name="xmpf">
                                 <?php foreach ( $xmpf_tbl as $key => $value ) {
-     var_dump($key);
-     echo '--';
-     var_dump($xmpf);
                                     echo "<option value=$key" . " "; if($key == $xmpf) {echo "selected";} echo " >$value</option>\n";
                                 } ?> 
                             </select>

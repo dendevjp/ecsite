@@ -31,4 +31,33 @@ function make_category( $parent_id, $order, $sort, $value, $indent ) {
         
     }
 }
+
+function calc_handling ( $subtotal, $payment_option) {
+    switch ($payment_option) {
+        case 0://クレジットカード
+            if ( $subtotal >= 1500 )
+                return 0;
+            else {
+                return 400;
+            }
+        case 1://銀行振込
+            if ( $subtotal >= 1500 )
+                return 0;
+            else {
+                return 400;
+            }
+        case 2://コンビニ
+            if ( $subtotal >= 1500 )
+                return 0;
+            else {
+                return 400;
+            }
+        case 3://代引き
+            if ( $subtotal >= 1500 )
+                return 0 + ceil($subtotal * 0.05);
+            else {
+                return 400 + ceil($subtotal * 0.05);
+            }
+    }
+}
 ?>

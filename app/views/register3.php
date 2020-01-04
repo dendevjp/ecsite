@@ -70,10 +70,6 @@ $site_url/register4.php?email1=${_POST['email1']}&md5=$md5
 ログインID：${_POST['email1']}
 _EOF_;
 
-//mb_language("Japanese");
-//var_dump($body);
-//mb_internal_encoding("UTF-8");
-//var_dump($body);
 echo mail( $_POST['email1'], $subject, $body);
 }
 catch(Throwable $e) {

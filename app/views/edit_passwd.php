@@ -17,15 +17,15 @@ if( ($login = auth()) == FALSE ) {
 
 if( isset($_POST['action']) && $_POST['action'] == 'edit')
 {
-    if ( $_POST['passwd_old'] == '') $error .='古いパスワードが入力されてません。<br>';
+    if ( $_POST['passwd_old'] == '') $error .='古いパスワードが入力されていません。<br>';
     if ( strlen($_POST['passwd_old']) > 16) $error .='古いパスワードが１６文字以上です。<br>';
     if ( ! preg_match("/^[!-~]+$/", $_POST['passwd_old'] )) $error .='古いパスワードに使えない文字が含まれています。<br>';
     
-    if ( $_POST['passwd_new_1'] == '') $error .='新しいパスワードが入力されてません。<br>';
+    if ( $_POST['passwd_new_1'] == '') $error .='新しいパスワードが入力されていません。<br>';
     if ( strlen($_POST['passwd_new_1']) > 16) $error .='新しいパスワードが１６文字以上です。<br>';
     if ( ! preg_match("/^[!-~]+$/", $_POST['passwd_new_1'] )) $error .='新しいパスワードに使えない文字が含まれています。<br>';
     
-    if ( $_POST['passwd_new_2'] == '') $error .='再度新しいパスワードが入力されてません。<br>';
+    if ( $_POST['passwd_new_2'] == '') $error .='再度新しいパスワードが入力されていません。<br>';
     if ( strlen($_POST['passwd_new_2']) > 16) $error .='再度新しいパスワードが１６文字以上です。<br>';
     if ( ! preg_match("/^[!-~]+$/", $_POST['passwd_new_2'] )) $error .='再度新しいパスワードに使えない文字が含まれています。<br>';
     
