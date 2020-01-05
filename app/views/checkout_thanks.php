@@ -20,10 +20,7 @@ if (isset($_SESSION['last_order']) && $_SESSION['last_order'] > time() + 60) {
 } else {
     $_SESSION['last_order'] = time();
 }
-}
-catch(Throwable $e) {
-    error_log("[". date('Y-m-d H:i:s') . "]". __LINE__ . $e->getMessage());
-}
+
 
 $now = time();
 
@@ -109,7 +106,7 @@ foreach($stmt as $loop){
         $stmt->bindValue(':shipping_address2',  $_POST['shipping_address2'], PDO::PARAM_STR);
         $stmt->execute();
         
-        $body_item .= $loop['item_name'] . "    " . $loop['sale_price'] . "円\n";
+        $body_item .= "■「" . $loop['item_name'] . "」\n" . "合計" . $loop['quantity'] . "点　" . $loop['sale_price'] * $loop['quantity'] . "円\n";
         $subtotal = $subtotal + $loop['sale_price'] * $loop['quantity'] ;
         
         $sql = "insert into shipping (
@@ -210,11 +207,50 @@ ${body_item}
 
 EOT;
 
-echo mail( $user['email1'], "ご注文の確認", $body);
-
+mail( $user['email1'], "ご注文の確認", $body);
+}
+catch(Throwable $e) {
+    error_log("[". date('Y-m-d H:i:s') . "]". __LINE__ . $e->getMessage());
+}
 ?>
 
 <?php require 'header.php' ?>
 <?php require 'topbar.php' ?>
-
+<h1>ご注文ありがとうございました。</h1>
+<p>
+    追って確認メールを送りました。<br>
+    内容をご確認ください。<br>
+<?php 
+if( $out_stock['0'] != '') {
+    
+print("なお、下記の商品に関しては、<br>ご注文確定前に在庫なしとなってしまいました。<br>申し訳ありませんでした。");    
+    foreach ($out_stock as $key => $value){
+        var_dump($key);
+        var_dump($value);
+        $sql = "select item.*, author.author_name, stock.arrival_date from item
+            left join author on item.author_id = author.author_id
+            left join stock on item.item_id = stock.item_id
+            where item.item_id = :item_id ";
+        $stmt =$pdo->prepare($sql);
+        $stmt->bindValue(':item_id',  $value, PDO::PARAM_STR);
+        $stmt->execute();
+        $outitem = $stmt->fetch();
+                
+        if ( strtotime($outitem['arrival_date']) < time()) {
+            $outitem['arrival_date'] = "未定";
+        } else {
+           $outitem['arrival_date'] = date("Y年m月d日", strtotime($outitem['arrival_date']));
+        }
+?>
+<li>
+    <a href="item.php?item_id=<?php print($outitem['item_id']); ?>"><?php print($outitem['item_name']); ?></a><br>
+    <?php print($outitem['author_name']); ?>　<?php print($outitem['sale_price']); ?> 円　入荷予定日: <?php print($outitem['arrival_date']); ?><br>
+</li>
+<?php
+    }
+}
+?>
+<h2>注文内容を確認、変更する</h2>
+<a href="order_history.php">注文履歴</a><br>
+</p>
 <?php require 'footer.php'; ?>

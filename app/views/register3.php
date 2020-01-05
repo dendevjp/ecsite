@@ -70,7 +70,7 @@ $site_url/register4.php?email1=${_POST['email1']}&md5=$md5
 ログインID：${_POST['email1']}
 _EOF_;
 
-echo mail( $_POST['email1'], $subject, $body);
+mail( $_POST['email1'], $subject, $body);
 }
 catch(Throwable $e) {
     error_log("[". date('Y-m-d H:i:s') . "]". __LINE__ . $e->getMessage());

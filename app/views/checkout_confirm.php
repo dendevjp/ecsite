@@ -75,7 +75,7 @@ $stmt->execute();
 
 $subtotal = 0;
 foreach( $stmt as $loop){ 
-    $subtotal = $loop['quantity'] * $loop['sale_price'];
+    $subtotal += $loop['quantity'] * $loop['sale_price'];
 ?>
         <li>
             <a href="item.php?item_id=<?php print($loop['item_id']) ?>"><?php print($loop['item_name']) ?></a><br>

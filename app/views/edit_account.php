@@ -50,6 +50,7 @@ if( isset($_POST['action']) && $_POST['action'] == 'edit')
     $stmt->bindValue(':users_id',  $_SESSION['users_id'], PDO::PARAM_STR);
     
     $stmt->execute();
+     $_SESSION['name_kanji'] = $_POST['name_kanji'];
     $message = "<font color='red'>アカウント情報が更新されました。</font>";
     $selectDbFlag = TRUE;
     } else
